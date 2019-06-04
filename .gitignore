@@ -1,0 +1,12 @@
+.idea
+bin
+include
+*.iml
+*.cfg
+lib
+pip-selfcheck.json
+venv/**
+*.pyc
+*.log
+db.sqlite3
+fibonaci_api/staticfiles/
