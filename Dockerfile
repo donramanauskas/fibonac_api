@@ -7,7 +7,7 @@ ENV PYTHONUNBUFFERED 1
 # create root directory for our project in the container
 RUN mkdir /fibonaci_api
 
-# Set /music_app as root directory
+# Set /fibonaci_app as root directory
 WORKDIR /fibonaci_api
 
 # copy requirements.txt to container
