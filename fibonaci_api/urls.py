@@ -19,7 +19,7 @@ from django.conf.urls import url
 from .views import FibonacciView
 
 urlpatterns = [
-    url(r"^$", FibonacciView.as_view(), name='all'),
+    url(r"^$", FibonacciView.as_view(), name='fibonacci_api'),
     path('admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls'))
 ]
