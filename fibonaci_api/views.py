@@ -20,7 +20,7 @@ class FibonacciView(APIView):
 
         if number < 0:
             return Response({status.HTTP_403_FORBIDDEN,
-                             "Fibonacci sequence can not be calculated for negative numbers"})
+                             "error: Fibonacci sequence can not be calculated for negative numbers"})
 
         result = fibonnaci_calculator(number)
         return Response(result)
