@@ -16,8 +16,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 from django.conf.urls import url
+from .views import FibonacciView
 
 urlpatterns = [
+    url(r"^$", FibonacciView.as_view(), name='all'),
     path('admin/', admin.site.urls),
     url(r'^api-auth/', include('rest_framework.urls'))
 ]
