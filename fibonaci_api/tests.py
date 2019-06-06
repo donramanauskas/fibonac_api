@@ -1,6 +1,6 @@
 from django.urls import reverse
 from django.test import TestCase
-from rest_framework import status
+
 
 from .fibonacci_calculator import fibonnaci_calculator
 
@@ -20,9 +20,25 @@ class FibonacciCalculatorTests(TestCase):
 
 class FibonacciApiViewTests(TestCase):
 
-    def tests_are_not_working(self):
+    def test_api_returns_fibonacci_sequence(self):
         url = reverse('fibonacci_api')
         data = {'number': 'not a numeric value'}
         response = self.client.post(url, data, format='json')
-        self.assertEqual(response.status_code,status.HTTP_403_FORBIDDEN)
+        self.assertEqual(response.status_code, 200)
+
+    def tests_api_returns_error_when_user_posts_non_numeric_data(self):
+        """
+        Check that API returns 403 in response when user posts non numeric data
+
+        """
+        url = reverse('fibonacci_api')
+        data = {'number': 'not a numeric value'}
+        response = self.client.post(url, data, format='json')
+        self.assertIn(403, response.data)
+
+    def test_api_returns_error_when_user_posts_negative_number(self):
+        url = reverse('fibonacci_api')
+        data = {'number': -2}
+        response = self.client.post(url, data, format='json')
+        self.assertIn(403, response.data)
 
