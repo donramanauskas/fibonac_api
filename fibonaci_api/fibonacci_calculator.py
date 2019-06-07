@@ -1,5 +1,11 @@
 
 def fibonnaci_calculator(n):
+    """
+    This probably should be refactoed to use list comprehension, to run more effectively.
+
+    :param n: integer number
+    :return: [0, 1, 1, 2, 3]
+    """
 
     count = 0
     n1 = 0
