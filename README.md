@@ -6,9 +6,11 @@ methods:
     GET returns {"success": "Welcome to FibonacciAPI App"}
     POST {"number": 5} returns [0, 1, 1, 2, 3]
     
+The App includes Django REST framework GUI, so you can make POST request from the browser.
+    
 **Running Application Locally**
     
-The easiest way to run app locally is using docker-compose.
+The easiest way to run app locally is using docker compose.
 
 You need to have docker and docker-compose installed on your 
 local machine. In project root folder run:
@@ -23,7 +25,7 @@ To access container fibonaci_api_web container:
 
 _docker ps_
 
-docker exec -ti <CONTAINER ID> /bin/bash_
+docker exec -ti <CONTAINER ID> /bin/bash
 
 **Deployment Pipeline**
 
