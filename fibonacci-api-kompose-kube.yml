@@ -89,7 +89,7 @@ spec:
       - args:
         - bash
         - entrypoint.sh
-        image: web
+        image: $DOCKER_IMAGE_NAME:$BUILD_NUMBER
         name: web
         ports:
         - containerPort: 8000
