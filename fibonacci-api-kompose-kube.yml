@@ -4,32 +4,25 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.18.0 ()
-  creationTimestamp: null
   labels:
     io.kompose.service: db
   name: db
 spec:
   replicas: 1
-  strategy: {}
-  template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        io.kompose.service: db
     spec:
       containers:
       - image: postgres
         name: db
-        resources: {}
+        resources:
+          requests:
+            cpu: 200m
       restartPolicy: Always
-status: {}
 
 ---
 
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  creationTimestamp: null
   labels:
     io.kompose.service: web-claim0
   name: web-claim0
@@ -39,7 +32,6 @@ spec:
   resources:
     requests:
       storage: 100Mi
-status: {}
 
 ---
 
@@ -60,8 +52,6 @@ spec:
     targetPort: 8000
   selector:
     io.kompose.service: web
-status:
-  loadBalancer: {}
 
 ---
 
@@ -71,7 +61,6 @@ metadata:
   annotations:
     kompose.cmd: kompose convert
     kompose.version: 1.18.0 ()
-  creationTimestamp: null
   labels:
     io.kompose.service: web
   name: web
@@ -80,10 +69,6 @@ spec:
   strategy:
     type: Recreate
   template:
-    metadata:
-      creationTimestamp: null
-      labels:
-        io.kompose.service: web
     spec:
       containers:
       - args:
@@ -93,7 +78,9 @@ spec:
         name: web
         ports:
         - containerPort: 8000
-        resources: {}
+        resources:
+          requests:
+            cpu: 200m
         volumeMounts:
         - mountPath: /fibonaci_volume
           name: web-claim0
@@ -102,4 +89,3 @@ spec:
       - name: web-claim0
         persistentVolumeClaim:
           claimName: web-claim0
-status: {}
