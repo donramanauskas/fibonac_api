@@ -5,10 +5,11 @@ services:
     image: postgres
   web:
     build: .
+    image: ramanado/fibonaci_api_web
     command: bash entrypoint.sh
     volumes:
       - .:/fibonaci_volume
     ports:
-      - "80:8000"
+      - "8000:8000"
     depends_on:
       - db

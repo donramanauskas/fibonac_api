@@ -17,4 +17,4 @@ COPY requirements.txt /fibonaci_api/
 RUN pip install -r requirements.txt
 
 # Copy direcory contents to container
-COPY . /fibonaci_api/
+COPY . /fibonaci_api

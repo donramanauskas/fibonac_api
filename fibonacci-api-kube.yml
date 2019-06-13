@@ -1,3 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  replicas: 1
+  template:
+    spec:
+      containers:
+      - image: postgres
+        name: db
+      restartPolicy: Always
+
+---
+
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: web-claim0
+spec:
+  accessModes:
+  - ReadWriteOnce
+  resources:
+    requests:
+      storage: 100Mi
+
+---
+
 kind: Service
 apiVersion: v1
 metadata:
