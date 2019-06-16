@@ -11,7 +11,7 @@ RUN mkdir /fibonaci_api
 WORKDIR /fibonaci_api
 
 # copy requirements.txt to container
-COPY requirements.txt /fibonaci_api/
+COPY requirements.txt /fibonaci_api
 
 # Install required packages
 RUN pip install -r requirements.txt
