@@ -3,6 +3,10 @@ version: '3'
 services:
   db:
     image: postgres
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+  redis:
+    image: "redis:alpine"
   web:
     build: .
     image: ramanado/fibonaci_api_web
@@ -13,3 +17,23 @@ services:
       - "8000:8000"
     depends_on:
       - db
+      - redis
+  celery:
+    build: .
+    command: celery -A fibonaci_api worker -l info
+    volumes:
+      - .:/fibonaci_volume
+    depends_on:
+      - db
+      - redis
+  celery-beat:
+    build: .
+    command: celery -A fibonaci_api beat -l info
+    volumes:
+      - .:/fibonaci_volume
+    depends_on:
+      - db
+      - redis
+
+volumes:
+  postgres_data:
